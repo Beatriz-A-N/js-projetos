@@ -1,0 +1,65 @@
+// fantasia, aventura, drama, crime, infantil, comédia, thriller, ação
+
+// A viagem de Chihiro, LIVRE, fantasia, aventura
+// Megamente, LIVRE, infantil, comédia
+
+// Quatro Vidas de um Cachorro, 10, infantil, comédia
+// Clube da Luta, 18, ação, crime
+// À Espera de um Milagre, 14, crime, fantasia
+// 12 Homens e uma Sentença, LIVRE, thriller, crime
+// A Sociedade da Neve, 14, aventura, thriller
+
+let campoIdade;
+let campoFantasia;
+let campoRomance;
+
+function setup() {
+  createCanvas(800, 400);
+  createElement("h2", "Recomendador de Filmes");
+  createSpan("Sua idade:");
+  campoIdade = createInput("5");
+  campoFantasia = createCheckbox("Gosta de fantasia?");
+  campoRomance = createCheckbox("Gosta de romance?")
+}
+
+function draw( ) {
+  background("rgb(255,255,255)");
+  let idade = campoIdade.value();
+  let gostaDeFantasia = campoFantasia.checked();
+  let gostaDeRomance = campoRomance.checked();
+  
+  let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeRomance);
+  
+  fill(color(150, 0, 270))
+  textAlign(CENTER, CENTER);
+  textSize(38);
+  text(recomendacao, width / 2, height / 2);
+}
+
+function geraRecomendacao(idade, gostaDeFantasia, gostaDeRomance) {
+  if(idade >= 10) {
+    if(idade >= 14) {
+      return "A Sociedade da Neve"
+    } else {
+      if(idade >=12) {
+        if(gostaDeFantasia || gostaDeRomance) {
+          return "Your Name"
+       } else {   
+        return "12 Homens e uma Sentença"
+         } 
+       } else {
+         if(gostaDeFantasia) {
+           return "A viagem de Chihiro";
+      } else {
+        return "Quatro Vidas de um Cachorro"
+        }
+      }   
+    }
+  } else {
+    if(gostaDeFantasia) {
+      return "À Espera de um Milagre";
+    } else {  
+      return "Megamente";
+      }
+    }
+  }
